@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { getUser } from "../../services/github-api/githubAPI";
+import { useNavigate } from "react-router";
 
 const HomePage = () => {
   const [username, setUsername] = useState<string>("");
-  const [user, setUser] = useState<any>(null);
+  const navigate = useNavigate();
 
   const handleGetUser = async () => {
-    const newUser = await getUser(username);
-    if (newUser) {
-      setUser(newUser);
-    }
+    navigate(`/${username}`);
   };
 
   return (
@@ -20,7 +17,6 @@ const HomePage = () => {
         onChange={(e) => setUsername(e.target.value)}
       />
       <button onClick={async () => await handleGetUser()}>Search</button>
-      {JSON.stringify(user, null, 2)}
     </div>
   );
 };

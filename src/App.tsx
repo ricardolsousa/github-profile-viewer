@@ -1,36 +1,20 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
-import { useSelector } from "react-redux";
-import { AuthenticationStateProps } from "./types/authentication/AuthenticationTypes";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
 import Navbar from "./components/navbar/Navbar";
-import RegisterPage from "./pages/authentication/register/RegisterPage";
-import LoginPage from "./pages/authentication/login/LoginPage";
 import HomePage from "./pages/home/HomePage";
+import ProfilePage from "./pages/profile/ProfilePage";
 
 function App() {
-  const isAuthenticated = useSelector(
-    (state: AuthenticationStateProps) => state.auth.userId
-  );
-
   return (
     <div>
       <Router>
         <Navbar />
         <div className="py-16">
-          {isAuthenticated && (
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-            </Routes>
-          )}
-          {!isAuthenticated && (
-            <Routes>
-              {/* Auth routes */}
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="*" element={<Navigate to="/login" replace />} />
-            </Routes>
-          )}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/:profile" element={<ProfilePage />} />
+          </Routes>
         </div>
       </Router>
     </div>
