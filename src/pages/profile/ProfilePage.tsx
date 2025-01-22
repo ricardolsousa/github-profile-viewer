@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { getUser } from "../../services/github-api/githubAPI";
 import { BsGithub } from "react-icons/bs";
+import ProfileDetails from "../../components/profile/profile-details/ProfileDetails";
+import ProfileRepositories from "../../components/profile/profile-repositories/ProfileRepositories";
 
 const ProfilePage = () => {
   const { profile } = useParams();
@@ -29,7 +31,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="mx-40 px-10 py-8">
+    <div className="mx-40 px-10 py-8 flex flex-col gap-4">
       <div className="w-full bg-white rounded flex flex-col items-center justify-center gap-4 p-4">
         <div className="flex flex-col gap-4 items-center justify-center">
           <div>
@@ -46,24 +48,10 @@ const ProfilePage = () => {
             <h1>{userProfile.login}</h1>
           </Link>
         </div>
-        <div className="flex gap-4">
-          <div className="bg-gray-200 rounded px-8 py-1 flex flex-col items-center justify-center">
-            <div>{userProfile.followers}</div>
-            <div>Followers</div>
-          </div>
-          <div className="bg-gray-200 rounded px-8 py-1 flex flex-col items-center justify-center">
-            <div>{userProfile.following}</div>
-            <div>Following</div>
-          </div>
-          <div className="bg-gray-200 rounded px-8 py-1 flex flex-col items-center justify-center">
-            <div>{userProfile.public_repos}</div>
-            <div>Repositories</div>
-          </div>
-          <div className="bg-gray-200 rounded px-8 py-1 flex flex-col items-center justify-center">
-            <div>{userProfile.public_gists}</div>
-            <div>Gists</div>
-          </div>
-        </div>
+        <ProfileDetails profile={userProfile} />
+      </div>
+      <div className="w-full bg-white rounded flex flex-col items-center justify-center gap-4 p-4">
+        <ProfileRepositories profile={userProfile} />
       </div>
       <div>{JSON.stringify(userProfile, null, 2)}</div>
     </div>
