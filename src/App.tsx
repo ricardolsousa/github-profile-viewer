@@ -6,6 +6,7 @@ import { AuthenticationStateProps } from "./types/authentication/AuthenticationT
 import Navbar from "./components/navbar/Navbar";
 import RegisterPage from "./pages/authentication/register/RegisterPage";
 import LoginPage from "./pages/authentication/login/LoginPage";
+import HomePage from "./pages/home/HomePage";
 
 function App() {
   const isAuthenticated = useSelector(
@@ -19,7 +20,7 @@ function App() {
         <div className="py-16">
           {isAuthenticated && (
             <Routes>
-              <Route path="/" element={<div>Homepage</div>} />
+              <Route path="/" element={<HomePage />} />
             </Routes>
           )}
           {!isAuthenticated && (
