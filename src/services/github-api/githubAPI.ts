@@ -11,3 +11,8 @@ export const getUser = async (username: string) => {
   const response = await githubAPI.get(`/users/${username}`);
   return response.data;
 };
+
+export const getUserRepos = async (username: string) => {
+  const response = await githubAPI.get(`/users/${username}/repos`);
+  return response.data;
+};
