@@ -2,6 +2,7 @@ import { VscStarEmpty } from "react-icons/vsc";
 import { VscIssues } from "react-icons/vsc";
 import { VscRepoForked } from "react-icons/vsc";
 import { getIconForLanguage } from "../../../utils/icons/iconsUtils";
+import ProfileRepositoriesStats from "./profile-repositories-stats/ProfileRepositoriesStats";
 
 type ProfileRepositoriesProps = {
   profileRepos: any;
@@ -42,32 +43,7 @@ const ProfileRepositories = ({
                   <li className="">{repo.updated_at}</li>
                 </ul>
               </div>
-              <ul className="flex flex-col justify-between pl-4 border-l border-gray-300 text-gray-500">
-                <li className="flex items-center text-sm">
-                  <VscStarEmpty
-                    style={{ height: "18px", width: "18px" }}
-                    className="mr-1"
-                  />
-                  <strong className="mr-1">{repo.stargazers_count}</strong>
-                  <span>Stars</span>
-                </li>
-                <li className="flex items-center text-sm">
-                  <VscRepoForked
-                    style={{ height: "18px", width: "18px" }}
-                    className="mr-1"
-                  />
-                  <strong className="mr-1">{repo.forks_count}</strong>
-                  <span>Forks</span>
-                </li>
-                <li className="flex items-center text-sm">
-                  <VscIssues
-                    style={{ height: "18px", width: "18px" }}
-                    className="mr-1"
-                  />
-                  <strong className="mr-1">{repo.open_issues_count}</strong>
-                  <span>Issues</span>
-                </li>
-              </ul>
+              <ProfileRepositoriesStats repository={repo} />
             </div>
           );
         })}
