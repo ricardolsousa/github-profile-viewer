@@ -12,7 +12,7 @@ const ProfileRepositories = ({ profileRepos }: ProfileRepositoriesProps) => {
     return <div>Loading...</div>;
   }
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 border-gray-200 gap-4">
       {profileRepos.length &&
         profileRepos.map((repo: any) => {
           const languageData = repo.language
@@ -20,7 +20,7 @@ const ProfileRepositories = ({ profileRepos }: ProfileRepositoriesProps) => {
             : null;
 
           return (
-            <div className="rounded bg-white flex justify-between gap-4 p-6">
+            <div className="flex justify-between gap-4 p-6 border">
               <div className="flex flex-col justify-between">
                 <h4 className="text-xl font-semibold tracking-tight">
                   {repo.name}

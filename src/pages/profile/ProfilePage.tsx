@@ -4,6 +4,7 @@ import { getUser, getUserRepos } from "../../services/github-api/githubAPI";
 import { BsGithub } from "react-icons/bs";
 import ProfileDetails from "../../components/profile/profile-details/ProfileDetails";
 import ProfileRepositories from "../../components/profile/profile-repositories/ProfileRepositories";
+import ProfileRepositoriesFilters from "../../components/profile/profile-repositories/profile-repositories-filters/ProfileRepositoriesFilters";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -56,7 +57,11 @@ const ProfilePage = () => {
         </div>
         <ProfileDetails profile={profile} />
       </div>
-      <ProfileRepositories profileRepos={profileRepos} />
+
+      <div className="bg-white p-4">
+        <ProfileRepositoriesFilters />
+        <ProfileRepositories profileRepos={profileRepos} />
+      </div>
     </div>
   );
 };
