@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router";
 import { getUser, getUserRepos } from "../../services/github-api/githubAPI";
 import { BsGithub } from "react-icons/bs";
 import ProfileDetails from "../../components/profile/profile-details/ProfileDetails";
 import ProfileRepositories from "../../components/profile/profile-repositories/ProfileRepositories";
 import ProfileRepositoriesFilters from "../../components/profile/profile-repositories/profile-repositories-filters/ProfileRepositoriesFilters";
+import ProfileRepositoriesCounter from "../../components/profile/profile-repositories/profile-repositories-counter/ProfileRepositoriesCounter";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -34,6 +35,12 @@ const ProfilePage = () => {
     fetchUser();
   }, [username]);
 
+  const profileFilteredRepos = useMemo(() => {
+    return profileRepos?.filter((repository: any) =>
+      repository.name.includes(searchRepos)
+    );
+  }, [profileRepos, searchRepos]);
+
   if (!profile) {
     return <></>;
   }
@@ -59,13 +66,16 @@ const ProfilePage = () => {
         <ProfileDetails profile={profile} />
       </div>
 
-      <div className="bg-white p-4 rounded">
+      <div className="bg-white p-4">
+        <ProfileRepositoriesCounter
+          repositoriesCounter={profileFilteredRepos.length}
+        />
         <ProfileRepositoriesFilters
           searchRepos={searchRepos}
           setSearchRepos={setSearchRepos}
         />
         <ProfileRepositories
-          profileRepos={profileRepos}
+          profileRepos={profileFilteredRepos}
           searchRepos={searchRepos}
         />
       </div>

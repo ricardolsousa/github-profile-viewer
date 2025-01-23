@@ -8,7 +8,7 @@ const ProfileRepositoriesFilters = ({
   setSearchRepos,
 }: ProfileRepositoriesFiltersProps) => {
   return (
-    <div className="flex mb-4">
+    <div className="flex my-4">
       <div>
         <input
           type="text"
