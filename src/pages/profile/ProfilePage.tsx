@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { getUser } from "../../services/github-api/githubAPI";
+import { getUser, getUserRepos } from "../../services/github-api/githubAPI";
 import { BsGithub } from "react-icons/bs";
 import ProfileDetails from "../../components/profile/profile-details/ProfileDetails";
 import ProfileRepositories from "../../components/profile/profile-repositories/ProfileRepositories";
 
 const ProfilePage = () => {
-  const { profile } = useParams();
-  const [userProfile, setUserProfile] = useState<any>();
+  const { username } = useParams();
+  const [profile, setProfile] = useState<any>();
+  const [profileRepos, setProfileRepos] = useState<any>();
 
   useEffect(() => {
     const fetchUser = async () => {
-      if (profile) {
+      if (username) {
         try {
-          const userProfileData = await getUser(profile);
-          if (userProfileData) {
-            setUserProfile(userProfileData);
+          const profileData = await getUser(username);
+          if (profileData) {
+            setProfile(profileData);
+
+            const profileReposData = await getUserRepos(username);
+            if (profileReposData) {
+              setProfileRepos(profileReposData);
+            }
           }
         } catch (e) {
           console.error(e);
@@ -24,9 +30,9 @@ const ProfilePage = () => {
     };
 
     fetchUser();
-  }, [profile]);
+  }, [username]);
 
-  if (!userProfile) {
+  if (!profile) {
     return <div>Loading...</div>;
   }
 
@@ -36,24 +42,21 @@ const ProfilePage = () => {
         <div className="flex flex-col gap-4 items-center justify-center">
           <div>
             <img
-              src={userProfile.avatar_url}
+              src={profile.avatar_url}
               width={150}
               height={150}
               alt=""
               className="rounded-full"
             />
           </div>
-          <Link to={userProfile.html_url} className="flex gap-1 items-center">
+          <Link to={profile.html_url} className="flex gap-1 items-center">
             <BsGithub />
-            <h1>{userProfile.login}</h1>
+            <h1>{profile.login}</h1>
           </Link>
         </div>
-        <ProfileDetails profile={userProfile} />
+        <ProfileDetails profile={profile} />
       </div>
-      <div className="w-full bg-white rounded flex flex-col items-center justify-center gap-4 p-4">
-        <ProfileRepositories profile={userProfile} />
-      </div>
-      <div>{JSON.stringify(userProfile, null, 2)}</div>
+      <ProfileRepositories profileRepos={profileRepos} />
     </div>
   );
 };

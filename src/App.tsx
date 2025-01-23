@@ -13,7 +13,7 @@ function App() {
         <div className="py-16">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/:profile" element={<ProfilePage />} />
+            <Route path="/:username" element={<ProfilePage />} />
           </Routes>
         </div>
       </Router>
