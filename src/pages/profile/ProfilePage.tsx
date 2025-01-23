@@ -35,25 +35,25 @@ const ProfilePage = () => {
   }, [username]);
 
   if (!profile) {
-    return <div>Loading...</div>;
+    return <></>;
   }
 
   return (
-    <div className="lg:mx-32 md:mx-1 sm:mx-1 xs:mx-1 px-10 py-8 flex flex-col gap-4">
+    <div className="lg:mx-32 md:mx-1 sm:mx-1 xs:mx-1 lg:px-6 px-4 py-8 flex flex-col gap-4">
       <div className="w-full bg-white rounded flex flex-col items-center justify-center gap-4 p-4">
         <div className="flex flex-col gap-4 items-center justify-center">
           <div>
             <img
-              src={profile.avatar_url}
+              src={profile?.avatar_url}
               width={150}
               height={150}
               alt=""
               className="rounded-full"
             />
           </div>
-          <Link to={profile.html_url} className="flex gap-1 items-center">
+          <Link to={profile?.html_url} className="flex gap-1 items-center">
             <BsGithub />
-            <h1>{profile.login}</h1>
+            <h1>{profile?.login}</h1>
           </Link>
         </div>
         <ProfileDetails profile={profile} />

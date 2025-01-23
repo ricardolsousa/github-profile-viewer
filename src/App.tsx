@@ -10,7 +10,7 @@ function App() {
     <div>
       <Router>
         <Navbar />
-        <div className="pt-16">
+        <div className="pt-12">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/:username" element={<ProfilePage />} />

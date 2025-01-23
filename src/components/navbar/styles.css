@@ -1,0 +1,15 @@
+.navbar-title {
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .navbar-title {
+    display: none;
+  }
+  .navbar-input-container {
+    width: 100%;
+  }
+  .navbar-input {
+    width: 100%;
+  }
+}
