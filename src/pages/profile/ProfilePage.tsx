@@ -10,6 +10,7 @@ const ProfilePage = () => {
   const { username } = useParams();
   const [profile, setProfile] = useState<any>();
   const [profileRepos, setProfileRepos] = useState<any>();
+  const [searchRepos, setSearchRepos] = useState<string>("");
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -38,7 +39,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="mx-40 px-10 py-8 flex flex-col gap-4">
+    <div className="lg:mx-32 md:mx-1 sm:mx-1 xs:mx-1 px-10 py-8 flex flex-col gap-4">
       <div className="w-full bg-white rounded flex flex-col items-center justify-center gap-4 p-4">
         <div className="flex flex-col gap-4 items-center justify-center">
           <div>
@@ -58,9 +59,15 @@ const ProfilePage = () => {
         <ProfileDetails profile={profile} />
       </div>
 
-      <div className="bg-white p-4">
-        <ProfileRepositoriesFilters />
-        <ProfileRepositories profileRepos={profileRepos} />
+      <div className="bg-white p-4 rounded">
+        <ProfileRepositoriesFilters
+          searchRepos={searchRepos}
+          setSearchRepos={setSearchRepos}
+        />
+        <ProfileRepositories
+          profileRepos={profileRepos}
+          searchRepos={searchRepos}
+        />
       </div>
     </div>
   );

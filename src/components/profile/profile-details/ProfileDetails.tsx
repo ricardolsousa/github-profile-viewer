@@ -4,7 +4,7 @@ type ProfileDetailsProps = {
 
 const ProfileDetails = ({ profile }: ProfileDetailsProps) => {
   return (
-    <div className="flex gap-4">
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-1 gap-4">
       <div className="bg-gray-200 rounded px-8 py-1 flex flex-col items-center justify-center">
         <div>{profile.followers}</div>
         <div>Followers</div>

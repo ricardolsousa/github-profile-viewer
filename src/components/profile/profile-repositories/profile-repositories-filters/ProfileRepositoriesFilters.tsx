@@ -1,8 +1,12 @@
-import { useState } from "react";
+type ProfileRepositoriesFiltersProps = {
+  searchRepos: string;
+  setSearchRepos: (search: string) => void;
+};
 
-const ProfileRepositoriesFilters = () => {
-  const [searchRepos, setSearchRepos] = useState<string>("");
-
+const ProfileRepositoriesFilters = ({
+  searchRepos,
+  setSearchRepos,
+}: ProfileRepositoriesFiltersProps) => {
   return (
     <div className="flex mb-4">
       <div>

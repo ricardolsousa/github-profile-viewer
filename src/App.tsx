@@ -10,7 +10,7 @@ function App() {
     <div>
       <Router>
         <Navbar />
-        <div className="py-16">
+        <div className="pt-16">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/:username" element={<ProfilePage />} />
