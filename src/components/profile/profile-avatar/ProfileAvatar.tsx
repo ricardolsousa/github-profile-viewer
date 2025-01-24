@@ -17,6 +17,7 @@ const ProfileAvatar = ({ profile }: ProfileAvatarProps) => {
           className="rounded-full"
         />
       </div>
+      {profile.name && <strong className="text-3xl">{profile.name}</strong>}
       <Link to={profile?.html_url} className="flex gap-1 items-center">
         <BsGithub />
         <h1>{profile?.login}</h1>
