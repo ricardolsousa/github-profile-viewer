@@ -9,7 +9,7 @@ const ProfileRepositoriesStats = ({
   repository,
 }: ProfileRepositoriesStatsProps) => {
   return (
-    <ul className="flex flex-col justify-between pl-4 border-l border-gray-300 text-gray-500">
+    <ul className="flex flex-col justify-between pl-4 border-l border-gray-200 text-gray-500">
       <ProfileRepositoriesStatsCard
         label="Stars"
         value={repository.stargazers_count}

@@ -25,7 +25,7 @@ const SelectionInput = ({
       {label && <label htmlFor="status">{label}</label>}
       <div className="relative">
         <ListboxButton
-          className="grid w-full cursor-default rounded border border-gray-300 py-1 px-2 text-left"
+          className="grid w-full cursor-default rounded border border-gray-200 py-1 px-2 text-left"
           style={{ minHeight: "34px", width: "fit-content" }}
         >
           <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
