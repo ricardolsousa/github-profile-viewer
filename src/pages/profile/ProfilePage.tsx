@@ -59,7 +59,7 @@ const ProfilePage = () => {
         <ProfileDetails profile={profile} />
       </div>
 
-      <div className="bg-white p-4">
+      <div className="rounded bg-white p-6">
         <ProfileRepositoriesCounter
           repositoriesCounter={profileFilteredRepos.length}
         />
