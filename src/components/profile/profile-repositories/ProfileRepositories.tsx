@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { getIconForLanguage } from "../../../utils/icons/iconsUtils";
 import ProfileRepositoriesStats from "./profile-repositories-stats/ProfileRepositoriesStats";
 
@@ -20,9 +21,11 @@ const ProfileRepositories = ({
         return (
           <div className="flex justify-between gap-4 p-6 border rounded">
             <div className="flex flex-col justify-between">
-              <h4 className="text-xl font-semibold tracking-tight">
-                {repo.name}
-              </h4>
+              <Link to={repo?.html_url} className="flex gap-1 items-center">
+                <h4 className="text-xl font-semibold tracking-tight">
+                  {repo.name}
+                </h4>
+              </Link>
               <p className="text-sm">{repo.description}</p>
               <ul className="flex text-xs mt-6 text-gray-500">
                 {languageData && (
