@@ -69,10 +69,7 @@ const ProfilePage = () => {
           filters={filters}
           setFilters={setFilters}
         />
-        <ProfileRepositories
-          profileRepos={profileFilteredRepos}
-          searchRepos={searchRepos}
-        />
+        <ProfileRepositories profileRepos={profileFilteredRepos} />
       </div>
     </div>
   );
