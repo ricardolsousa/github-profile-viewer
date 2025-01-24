@@ -26,7 +26,7 @@ const SelectionInput = ({
       <div className="relative">
         <ListboxButton
           className="grid w-full cursor-default rounded border border-gray-300 py-1 px-2 text-left"
-          style={{ minHeight: "34px", minWidth: "200px" }}
+          style={{ minHeight: "34px", width: "fit-content" }}
         >
           <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
             <span className="block truncate text-gray-500">

@@ -1,0 +1,13 @@
+.filters-container {
+  flex-direction: row;
+}
+
+@media (max-width: 480px) {
+  .filters-container {
+    flex-direction: column-reverse;
+    gap: 16px;
+  }
+  .search-input {
+    width: 100%;
+  }
+}

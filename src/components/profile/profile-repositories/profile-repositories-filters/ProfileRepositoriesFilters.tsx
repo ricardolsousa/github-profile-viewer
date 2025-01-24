@@ -1,4 +1,6 @@
 import SelectionInput from "../../../utils/selection-input/SelectionInput";
+import { filtersList } from "./profile-repositories-filters-types/ProfileRepositoriesFiltersTypes";
+import "./styles.css";
 
 type ProfileRepositoriesFiltersProps = {
   searchRepos: string;
@@ -7,37 +9,6 @@ type ProfileRepositoriesFiltersProps = {
   setFilters: (field: string) => void;
 };
 
-const filtersList = [
-  {
-    label: "Created",
-    value: "created_at",
-  },
-  {
-    label: "Updated",
-    value: "updated_at",
-  },
-  {
-    label: "Pushed",
-    value: "pushed",
-  },
-  {
-    label: "Name",
-    value: "full_name",
-  },
-  {
-    label: "Stars",
-    value: "stargazers_count",
-  },
-  {
-    label: "Forks",
-    value: "forks_count",
-  },
-  {
-    label: "Issues",
-    value: "open_issues_count",
-  },
-];
-
 const ProfileRepositoriesFilters = ({
   searchRepos,
   setSearchRepos,
@@ -45,13 +16,13 @@ const ProfileRepositoriesFilters = ({
   setFilters,
 }: ProfileRepositoriesFiltersProps) => {
   return (
-    <div className="flex my-4 justify-between">
+    <div className="flex my-4 justify-between filters-container">
       <div>
         <input
           type="text"
           onChange={(e) => setSearchRepos(e.target.value)}
           value={searchRepos}
-          className="rounded border border-gray-200 py-1 px-2"
+          className="rounded border border-gray-200 py-1 px-2 search-input"
           placeholder="Search repository..."
         />
       </div>

@@ -1,0 +1,10 @@
+.search-container {
+  flex-direction: row;
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
