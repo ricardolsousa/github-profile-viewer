@@ -1,6 +1,3 @@
-import { VscStarEmpty } from "react-icons/vsc";
-import { VscIssues } from "react-icons/vsc";
-import { VscRepoForked } from "react-icons/vsc";
 import { getIconForLanguage } from "../../../utils/icons/iconsUtils";
 import ProfileRepositoriesStats from "./profile-repositories-stats/ProfileRepositoriesStats";
 

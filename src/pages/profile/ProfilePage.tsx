@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router";
+import { useParams } from "react-router";
 import { getUser, getUserRepos } from "../../services/github-api/githubAPI";
-import { BsGithub } from "react-icons/bs";
 import ProfileDetails from "../../components/profile/profile-details/ProfileDetails";
 import ProfileRepositories from "../../components/profile/profile-repositories/ProfileRepositories";
 import ProfileRepositoriesFilters from "../../components/profile/profile-repositories/profile-repositories-filters/ProfileRepositoriesFilters";
@@ -13,6 +12,7 @@ const ProfilePage = () => {
   const [profile, setProfile] = useState<any>();
   const [profileRepos, setProfileRepos] = useState<any>();
   const [searchRepos, setSearchRepos] = useState<string>("");
+  const [filters, setFilters] = useState<string>("created_at");
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,9 +22,9 @@ const ProfilePage = () => {
           if (profileData) {
             setProfile(profileData);
 
-            const profileReposData = await getUserRepos(username);
-            if (profileReposData) {
-              setProfileRepos(profileReposData);
+            const profileRepositories = await getUserRepos(username);
+            if (profileRepositories) {
+              setProfileRepos(profileRepositories);
             }
           }
         } catch (e) {
@@ -37,12 +37,18 @@ const ProfilePage = () => {
   }, [username]);
 
   const profileFilteredRepos = useMemo(() => {
-    return profileRepos?.filter((repository: any) =>
-      repository.name.includes(searchRepos)
-    );
-  }, [profileRepos, searchRepos]);
+    return profileRepos
+      ?.filter((repository: any) => repository.name.includes(searchRepos))
+      .sort((a: any, b: any) =>
+        ["stargazers_count", "forks_count", "open_issues_count"].includes(
+          filters
+        )
+          ? b[filters] - a[filters]
+          : a[filters]?.localeCompare(b[filters])
+      );
+  }, [profileRepos, searchRepos, filters]);
 
-  if (!profile) {
+  if (!profile || !profileRepos) {
     return <></>;
   }
 
@@ -60,6 +66,8 @@ const ProfilePage = () => {
         <ProfileRepositoriesFilters
           searchRepos={searchRepos}
           setSearchRepos={setSearchRepos}
+          filters={filters}
+          setFilters={setFilters}
         />
         <ProfileRepositories
           profileRepos={profileFilteredRepos}
